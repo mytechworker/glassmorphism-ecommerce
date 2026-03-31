@@ -1,0 +1,304 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Global Design Tokens ===== */
+:root {
+  --accent: #e86a33;
+  --accent-light: #f08c5a;
+  --accent-dark: #c75520;
+  --accent-rgb: 232, 106, 51;
+
+  --text-heading: #ffffff;
+  --text-body: #e0dcd8;
+  --text-muted: #a89f96;
+  --text-on-accent: #ffffff;
+
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-bg-strong: rgba(255, 255, 255, 0.12);
+  --glass-bg-subtle: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.15);
+  --glass-border-hover: rgba(232, 106, 51, 0.4);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --glass-shadow-hover: 0 12px 40px rgba(232, 106, 51, 0.15);
+  --glass-blur: 18px;
+  --glass-blur-strong: 34px;
+
+  --divider: rgba(255, 255, 255, 0.1);
+  --gold: #f59e0b;
+  --radius-lg: 24px;
+  --radius-md: 20px;
+}
+
+/* ===== Background image ===== */
+.bg-hero-img {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+@layer base {
+  body {
+    @apply font-roboto;
+    color: var(--text-body);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-unbounded;
+    color: var(--text-heading);
+  }
+  h1 {
+    font-size: 6em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-size: 3em;
+    font-weight: 300;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  h3 {
+    font-size: 1.5em;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+  h4 {
+    font-size: 1.1em;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow:
+      var(--glass-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card {
+    background: var(--glass-bg-strong);
+    backdrop-filter: blur(var(--glass-blur-strong));
+    -webkit-backdrop-filter: blur(var(--glass-blur-strong));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    padding: 24px;
+    transition:
+      transform 0.35s ease,
+      border-color 0.35s ease,
+      box-shadow 0.35s ease;
+    box-shadow:
+      var(--glass-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  .glass-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--glass-border-hover);
+    box-shadow:
+      var(--glass-shadow-hover),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .glass-section {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    padding: 80px 60px;
+    box-shadow:
+      var(--glass-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .section-glass {
+    padding: 80px 30px;
+    position: relative;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--glass-bg-subtle);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50px;
+    padding: 13px 30px;
+    color: var(--text-heading);
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background: rgba(var(--accent-rgb), 0.08);
+    border-color: rgba(var(--accent-rgb), 0.35);
+    box-shadow: 0 4px 20px rgba(var(--accent-rgb), 0.1);
+    color: var(--accent);
+  }
+
+  .btn-fill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(
+      135deg,
+      var(--accent) 0%,
+      var(--accent-dark) 100%
+    );
+    border: none;
+    border-radius: 50px;
+    padding: 13px 30px;
+    color: var(--text-on-accent);
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.25);
+  }
+  .btn-fill:hover {
+    box-shadow: 0 6px 28px rgba(var(--accent-rgb), 0.4);
+    transform: translateY(-2px);
+  }
+
+  .section-tag {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 14px;
+    font-family: "Roboto", sans-serif;
+  }
+  .section-tag::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.35);
+  }
+}
+
+/* Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+/* Background glow orbs */
+.glow-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 3em;
+  }
+  h2 {
+    font-size: 2em;
+    line-height: 1.2;
+  }
+  h3 {
+    font-size: 1.1em;
+  }
+  .glass-section {
+    padding: 60px 24px;
+  }
+  .section-glass {
+    padding: 60px 18px;
+  }
+  .btn-primary,
+  .btn-fill {
+    padding: 12px 24px;
+    font-size: 0.85em;
+  }
+}
+@media (max-width: 767px) {
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.5em;
+    line-height: 1.2;
+  }
+  h3 {
+    font-size: 1em;
+  }
+  h4 {
+    font-size: 0.85em;
+  }
+  .glass-section {
+    padding: 40px 16px;
+  }
+  .section-glass {
+    padding: 40px 12px;
+  }
+  .btn-primary,
+  .btn-fill {
+    padding: 10px 20px;
+    font-size: 0.82em;
+  }
+  .section-tag {
+    font-size: 11px;
+  }
+}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.6em;
+  }
+  h2 {
+    font-size: 1.25em;
+  }
+  .glass-section {
+    padding: 32px 14px;
+  }
+  .section-glass {
+    padding: 32px 10px;
+  }
+  .btn-primary,
+  .btn-fill {
+    padding: 10px 18px;
+    font-size: 0.8em;
+  }
+}
